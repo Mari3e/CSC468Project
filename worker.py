@@ -16,6 +16,21 @@ else:
 
 redis = Redis("redis")
 
+def get_next_id():
+    # need to find scope_identity() equivalent for redis to get the last used id and insert it for the user
+
+class User:
+  def __init__(self, name, balance, password, pendingTransactions, active):
+    self.name = name
+    self.balance = balance
+    self.id = get_next_id()
+    self.password = password
+    self.pendingTransactions = get_transactions()
+    self.active = active
+    
+    def get_transactions():
+        # create a method that gets the corresponding transaction ids into a list basedon the user's ids
+        # fetches the transactions from the redis db
 
 def get_random_bytes():
     r = requests.get("http://rng/32")
