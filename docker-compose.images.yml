@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  rng:
+    build: rng
+    image: 127.0.0.1:30000/rng:v0.1
+    deploy:
+      mode: global
+
+  hasher:
+    build: hasher
+    image: 127.0.0.1:30000/hasher:v0.1
+
+  webui:
+    build: webui
+    image: 127.0.0.1:30000/webui:v0.1
+    ports:
+    - "8000:80"
+
+  redis:
+    image: redis
+
+  worker:
+    build: worker
+    image: 127.0.0.1:30000/worker:v0.1
+    deploy:
+      replicas: 10
