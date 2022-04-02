@@ -13,7 +13,7 @@
     align-items: center;
     justify-self: center;
     margin: 0 auto;
-        
+
 }
 #tweet {
     color: whitesmoke;
@@ -48,6 +48,31 @@ String.prototype.format = function () {
 var series = [];
 var points = []
 var graph = null;
+// Default users
+var users = ["Declan", "Meredith", "Shomari", "Greg", "Patrick"];
+var currentUser = "";
+
+// recursive log in function that allows for adding a new user if the one entered
+// is not present
+function logIn(){
+  let user = window.prompt("Please enter your username")
+  if (users.indexOf(user) > -1)
+  {
+    currentUser = user;
+    window.alert("Logged in as " + user);
+  }
+  else {
+    if (window.confirm("This user does not exist: Add " + user + "?"))
+    {
+            users.push(user);
+            currentUser = user;
+            window.alert("Logged in as " + user);
+    }
+    else {
+      logIn();
+    }
+  }
+}
 
 function refresh () {
     $.ajax({ url: "json" }).done(function (data) {
@@ -112,6 +137,8 @@ function refresh () {
     });
 }
 
+logIn();
+
 $(function () {
     setInterval(refresh, 1000);
 });
@@ -128,6 +155,5 @@ $(function () {
   <span id="speed">-</span>
   <a id="tweet" href="#">(Tweet this!)</a>
 </h2>
-
 </body>
 </html>
