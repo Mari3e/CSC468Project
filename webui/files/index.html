@@ -1,11 +1,11 @@
 <!doctype html>
 <html>
 <head>
-<title>Group 3 Miner WebUI</title>
+<title>Coin Balance</title>
 <link rel="stylesheet" type="text/css" href="rickshaw.min.css">
 <style>
 #graph {
-    background-color: grey;
+    background-color: rgb(255,255,230);
     width: 800px;
     height: 400px;
     display: grid;
@@ -13,16 +13,22 @@
     align-items: center;
     justify-self: center;
     margin: 0 auto;
-        
+    border-radius: 25px;
+
 }
 #tweet {
     color: whitesmoke;
 }
-
+#stonks {
+  opacity: 0.5;
+  width: 60%;
+  height: 40%;
+  padding-top: 0px;
+}
 h1 {
     text-align: center;
-    font-size: 1.5rem;
-    color: whitesmoke;
+    font-size: 40px;
+    color: orange;
 }
 
 h2 {
@@ -32,7 +38,7 @@ h2 {
 }
 
 body {
-background-color: black;
+    background-image: linear-gradient(rgb(102,179,255), gray);
 }
 </style>
 <script src="jquery-1.11.3.min.js"></script>
@@ -48,6 +54,31 @@ String.prototype.format = function () {
 var series = [];
 var points = []
 var graph = null;
+// Default users
+var users = ["Declan", "Meredith", "Shomari", "Greg", "Patrick"];
+var currentUser = "";
+
+// recursive log in function that allows for adding a new user if the one entered
+// is not present
+function logIn(){
+  let user = window.prompt("Please enter your username")
+  if (users.indexOf(user) > -1)
+  {
+    currentUser = user;
+    window.alert("Logged in as " + user);
+  }
+  else {
+    if (window.confirm("This user does not exist: Add " + user + "?"))
+    {
+            users.push(user);
+            currentUser = user;
+            window.alert("Logged in as " + user);
+    }
+    else {
+      logIn();
+    }
+  }
+}
 
 function refresh () {
     $.ajax({ url: "json" }).done(function (data) {
@@ -112,6 +143,8 @@ function refresh () {
     });
 }
 
+logIn();
+
 $(function () {
     setInterval(refresh, 1000);
 });
@@ -119,15 +152,14 @@ $(function () {
 </head>
 <body>
 
-<h1>Group 3 Coin Miner</h1>
+<h1>Coin Balance</h1>
 
 <div id="graph"></div>
-
+<div id="stonks"><img src="files/images/stonks.png" alt="Stonk Man"></div>
 <h2>
   Current mining speed:
   <span id="speed">-</span>
   <a id="tweet" href="#">(Tweet this!)</a>
 </h2>
-
 </body>
 </html>
