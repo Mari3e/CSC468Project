@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: socat
+  name: socat
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: socat
+  template:
+    metadata:
+      labels:
+        app: socat
+    spec:
+      containers:
+      - args:
+        - sh
+        - -c
+        - apk add --no-cache socat && socat TCP-LISTEN:80,fork,reuseaddr OPENSSL:kubernetes-dashboard:443,verify=0
+        image: alpine
+        imagePullPolicy: Always
+        name: socat
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: socat
+  name: socat
+  namespace: kube-system
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: socat
+  type: NodePort
