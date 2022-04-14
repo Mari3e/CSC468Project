@@ -1,5 +1,6 @@
 FROM node:4-slim
-RUN npm install nodejs
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash 
+RUN nvm install node
 RUN npm install express
 RUN npm install redis
 COPY files/ /files/
