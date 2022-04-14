@@ -1,6 +1,7 @@
 FROM node:4-slim
 RUN npm install express
 RUN npm install redis
+RUN apk add --update nodejs
 COPY files/ /files/
 COPY webui.js /
 CMD ["node", "webui.js"]
