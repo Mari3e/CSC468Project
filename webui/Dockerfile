@@ -1,5 +1,5 @@
 FROM node:alpine
-RUN nvm install node
+
 RUN npm install express
 RUN npm install redis
 COPY files/ /files/
