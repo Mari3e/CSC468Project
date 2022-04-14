@@ -38,7 +38,8 @@ h2 {
 }
 
 body {
-    background-image: linear-gradient(rgb(102,179,255), gray);
+    background: linear-gradient(rgb(102,179,255), gray);
+    background-attachment: fixed; 
 }
 </style>
 <script src="jquery-1.11.3.min.js"></script>
@@ -57,6 +58,7 @@ var graph = null;
 // Default users
 var users = ["Declan", "Meredith", "Shomari", "Greg", "Patrick"];
 var currentUser = "";
+var currentUserTotal = 0;
 
 // recursive log in function that allows for adding a new user if the one entered
 // is not present
@@ -73,6 +75,7 @@ function logIn(){
             users.push(user);
             currentUser = user;
             window.alert("Logged in as " + user);
+			currentUserTotal = 0;
     }
     else {
       logIn();
@@ -99,6 +102,7 @@ function refresh () {
             // Compute instantaneous speed
             var s1 = series[i];
             var s2 = series[i+1];
+			currentUserTotal = s1;
             speed = (s2.hashes-s1.hashes)/(s2.now-s1.now);
             points.push({ x: s2.now, y: speed });
         }
@@ -141,6 +145,8 @@ function refresh () {
             });
         }
     });
+	
+	document.getElementById("userTotal").innerHTML = "Current User: " + currentUser + " | Current Wallet: " + currentUserTotal;
 }
 
 logIn();
@@ -153,7 +159,7 @@ $(function () {
 <body>
 
 <h1>Coin Balance</h1>
-
+<h2 id="userTotal">Test<h2>
 <div id="graph"></div>
 <div id="stonks"><img src="images/stonks.png" alt="Stonk Man"></div>
 <h2>
