@@ -146,7 +146,7 @@ function refresh () {
         }
     });
 	
-	document.getElementById("userTotal").innerHTML = "Current User: " + currentUser + " | Current Wallet: " + currentUserTotal.coins;
+	document.getElementById("userTotal").innerHTML = "Current User: " + currentUser + " | Current Wallet: " + String(currentUserTotal.coins);
 }
 
 logIn();
