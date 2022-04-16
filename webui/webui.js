@@ -8,7 +8,7 @@ client.on("error", function (err) {
 });
 
 app.get('/', function (req, res) {
-    res.redirect('files/index.html');
+    res.redirect('/index.html');
 });
 
 app.get('/json', function (req, res) {
