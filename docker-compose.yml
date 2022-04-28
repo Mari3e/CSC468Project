@@ -23,3 +23,12 @@ services:
 
   worker:
     build: worker
+
+ sql-server-db:
+    container_name: sql-server-db
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    ports:
+      - "1433:1433"
+    environment:
+       SA_PASSWORD: "change_this_password"
+       ACCEPT_EULA: "Y"
