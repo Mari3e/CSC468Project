@@ -1,0 +1,10 @@
+- hosts: localhost
+  become: yes
+  vars:
+    jenkins_hostname: IP_ADDRESS
+    docker_users:
+    - jenkins
+  roles:
+    - role: geerlingguy.jenkins
+
+
