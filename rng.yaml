@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rng
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: rng
+  template:
+    metadata:
+      labels:
+        app: rng
+    spec:
+      containers:
+      - name: rng
+        image:  DOCKER_REGISTRY/rng:BUILD_NUMBER
+        ports:
+          - name: http-port
+            containerPort: 80
