@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hasher
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: hasher
+  template:
+    metadata:
+      labels:
+        app: hasher
+    spec:
+      containers:
+      - name: hasher
+        image: DOCKER_REGISTRY/hasher:BUILD_NUMBER
+        ports:
+          - name: http-port
+            containerPort: 80
