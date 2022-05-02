@@ -145,6 +145,7 @@ function logIn(){
     {
             users.push(user);
             currentUser = user;
+	    coinsMap.set(currentUser, 0);
             window.alert("Logged in as " + user);
     }
     else {
