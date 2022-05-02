@@ -226,7 +226,7 @@ function refresh () {
         }
     });
 	
-	document.getElementById("userTotal").innerHTML = "Current User: " + currentUser + " | Current Wallet: " + String(currentUserTotal.coins - difference);
+	document.getElementById("userTotal").innerHTML = "Current User: " + currentUser + " | Current Wallet: " + String(coinsMap.get(currentUser) + (currentUserTotal.coins - difference));
 }
 
 logIn();
