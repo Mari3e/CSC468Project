@@ -114,10 +114,17 @@ var series = [];
 var points = []
 var graph = null;
 // Default users
+const coinsMap = new Map();
 var users = ["Declan", "Meredith", "Shomari", "Greg", "Patrick"];
+users.ForEach(CreateMapping(name));
 var currentUser = "";
 var currentUserTotal = 0;
 var difference = 0;
+
+// create mapping to store coin values
+function createMapping() {
+	coinsMap.set(name, 0);
+}
 
 // recursive log in function that allows for adding a new user if the one entered
 // is not present
@@ -144,6 +151,8 @@ function logIn(){
 function logOut() {
 	// set difference so the user is only mining new coins
 	difference = currentUserTotal.coins;
+	//save current users coin total
+	coinsMap.set(currentUser, currentUserTotal.coins);
 	logIn();
 }
 	
