@@ -113,18 +113,18 @@ String.prototype.format = function () {
 var series = [];
 var points = []
 var graph = null;
+	
 // Default users
 const coinsMap = new Map();
 var users = ["Declan", "Meredith", "Shomari", "Greg", "Patrick"];
-users.forEach(createMapping(name));
+// map users to their coin values
+users.forEach(function(name) {
+	coinsMap.set(name, 0);
+});
+	
 var currentUser = "";
 var currentUserTotal = 0;
 var difference = 0;
-
-// create mapping to store coin values
-function createMapping() {
-	coinsMap.set(name, 0);
-}
 
 // recursive log in function that allows for adding a new user if the one entered
 // is not present
