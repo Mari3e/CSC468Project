@@ -156,7 +156,8 @@ function logIn(){
 	
 function logOut() {
 	//save current users coin total
-	coinsMap.set(currentUser, currentUserTotal.coins - difference);
+	var coins = coinsMap.get(currentUser);
+	coinsMap.set(currentUser, coins + currentUserTotal.coins - difference);
 	// set difference so the user is only mining new coins
 	difference = currentUserTotal.coins;
 	logIn();
