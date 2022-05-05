@@ -24,3 +24,5 @@ done < <( ls -l /users | grep 4096 | cut -d' ' -f3 )
 sudo cp /local/repository/docker_config/daemon.json /etc/docker/daemon.json
 sudo systemctl daemon-reload
 sudo systemctl restart docker
+sudo rm /etc/containerd/config.toml
+systemctl restart containerd
